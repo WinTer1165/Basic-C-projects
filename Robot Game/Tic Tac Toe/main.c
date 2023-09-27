@@ -20,9 +20,9 @@ void next_line()
 // little welcome message
 void welcome_message()
 {
-    printf("    WELCOME TO SIMPLE TIC TAC TOE!!!\n");
-    printf("Enter number of rows according to num-pad\n");
-    printf("   Player One goes first and is 'X'\n");
+    printf(" WELCOME TO SIMPLE TIC TAC TOE!!!\n");
+    printf("Enter number according to num-pad\n");
+    printf(" Player One goes first and is 'X'\n");
 }
 
 // draw game board
