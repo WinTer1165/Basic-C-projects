@@ -2,13 +2,15 @@
 #include <math.h>
 
 int main() {
-    int a, b, c;
-    char graph[30][60];
     printf("Graph Plotter\n");
     printf("Enter quadratic equation's coefficients\n");
     printf("Equation is of the form y = ax^2 + bx + c\n");
-    prinf("Enter a,b,c\n");
+    
+    int a, b, c;
     scanf("%d %d %d", &a, &b, &c);
+    
+    char graph[30][60];
+
     for (int i = 0; i < 30; i++) {
         for (int j = 0; j < 60; j++) {
             int x = j - 30;
@@ -19,6 +21,12 @@ int main() {
                 graph[i][j] = ' ';
             }
         }
+    }
+    for (int j = 0; j < 60; j++) {
+        graph[15][j] = '-';
+    }
+    for (int i = 0; i < 30; i++) {
+        graph[i][30] = '|';
     }
     printf("Printing the graph..\n");
     for (int i = 0; i < 30; i++) {
