@@ -6,12 +6,15 @@ Welcome to the Basic C Programming Projects repository! This repository contains
 
 ### Here is a list of the projects included in this repository:
 
-Password Generator
-Tic-tac-toe
-Rock-paper-scissors
-Weather station
-Calculator
+Password Generator,
+Tic-tac-toe,
+Rock-paper-scissors,
+Weather station,
+Calculator,
 and more will be added
+
+## Contribution: Graph Plotter by https://github.com/PPraneesh, 
+
 
 
 ## Contribution Guidelines :
