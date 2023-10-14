@@ -11,6 +11,7 @@ Tic-tac-toe,
 Rock-paper-scissors,
 Weather station,
 Calculator,
+Hangman,
 and more will be added
 
 ## Contribution: Graph Plotter by https://github.com/PPraneesh, 
