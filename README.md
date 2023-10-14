@@ -8,6 +8,7 @@
 ### Weather Station
 ### Robot Game V1
 ### Tic Tac Toe
+### Hangman
 ### and more will be added
 
 ### Contribution: Graph Plotter by https://github.com/PPraneesh
