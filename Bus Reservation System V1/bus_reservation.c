@@ -4,14 +4,29 @@
 #include <time.h>
 #include <Windows.h>
 
+/*
+stdio.h - standard input output: printf(), scanf(), FILE etc
+string.h - string library: strcmp()
+stdlib - standard library: for using random srand(), rand() etc
+time.h - time library: for using random
+Windows.h - windows specific header file: Sleep()
+*/
+
+// maximum number of seat in a single bus
 #define MAX_SEAT 40
+// maximum character a name can have
 #define P_NAME_SIZE 50
+// maximum phone number string
 #define P_CONTACT_SIZE 15
 
+// for running loop in file
 int P_MAX;
+// for generating a unique id number
 int ID = 1000;
+// ticket price
 float TICKET_PRICE = 320;
 
+// class
 struct Passenger
 {
     char passenger_name[P_NAME_SIZE];
@@ -30,11 +45,13 @@ void clr_scrn()
     // Alternate: system("cls");
 }
 
+// returning money after deducting ticket price from passenger given money
 float return_money(float x, float y)
 {
     return x - y;
 }
 
+// generating unique id number
 int passenger_identity()
 {
     srand(time(NULL));
@@ -46,6 +63,7 @@ int passenger_identity()
     return ID + number1 + number2 + number3;
 }
 
+// detecting how many passengers are there in details file
 int passenger_number()
 {
     int counter = 0;
@@ -61,6 +79,7 @@ int passenger_number()
     return P_MAX;
 }
 
+// adding passenger or selling them tickets
 void add_Passenger(struct Passenger commuter[MAX_SEAT])
 {
     FILE *fp;
@@ -114,6 +133,7 @@ void add_Passenger(struct Passenger commuter[MAX_SEAT])
     }
 }
 
+// outputs the entire passenger list
 void view_Passenger(struct Passenger commuter[MAX_SEAT])
 {
     passenger_number();
@@ -142,6 +162,7 @@ void view_Passenger(struct Passenger commuter[MAX_SEAT])
     fclose(fp);
 }
 
+// searching passengers through name, seat number, id, mobile
 void search_Passenger(struct Passenger commuter[MAX_SEAT])
 {
     FILE *fp;
@@ -280,6 +301,7 @@ void search_Passenger(struct Passenger commuter[MAX_SEAT])
     }
 }
 
+// removing passenger from bus
 void remove_Passenger(struct Passenger commuter[MAX_SEAT])
 {
     FILE *fp;
@@ -344,6 +366,7 @@ void remove_Passenger(struct Passenger commuter[MAX_SEAT])
     fclose(temp);
 }
 
+// replacing passenger from bus
 void replace_Passenger(struct Passenger commuter[MAX_SEAT])
 {
     FILE *fp;
@@ -429,6 +452,7 @@ void replace_Passenger(struct Passenger commuter[MAX_SEAT])
     fclose(temp);
 }
 
+// main function
 void main()
 {
     struct Passenger commuter[MAX_SEAT];
