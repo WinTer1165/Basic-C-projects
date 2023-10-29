@@ -3,6 +3,7 @@
 ## Beginner-friendly-Projects-for-Schools
 ## Read LEARN.md
 
+### Bus Reservation System
 ### Password-Generator
 ### Rock-Paper-Scissor
 ### Weather Station
