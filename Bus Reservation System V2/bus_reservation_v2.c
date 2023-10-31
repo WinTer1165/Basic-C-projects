@@ -92,6 +92,106 @@ int passenger_number()
     return P_MAX;
 }
 
+// visualizing bus seats
+void booked_seat(struct Passenger commuter[MAX_SEAT])
+{
+    FILE *fp;
+    fp = fopen("details.txt", "r");
+    passenger_number();
+    int total_passenger = 0;
+    int passenger_seat_positions[MAX_SEAT] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40};
+    int all_seat_positions[MAX_SEAT] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40};
+
+    for (int i = 0; i < P_MAX; i++)
+    {
+        fscanf(fp, "%d", &commuter[i].passenger_id);
+        fscanf(fp, "%s", &commuter[i].passenger_name);
+        fscanf(fp, "%s", &commuter[i].passenger_contact);
+        fscanf(fp, "%d", &commuter[i].passenger_seat_position);
+        fscanf(fp, "%f", &commuter[i].given_money);
+        fscanf(fp, "%f", &commuter[i].ticket_price);
+        fscanf(fp, "%f", &commuter[i].return_money);
+
+        for (int j = 0; j < MAX_SEAT; j++)
+        {
+            if (passenger_seat_positions[j] == commuter[i].passenger_seat_position)
+            {
+                passenger_seat_positions[j] = 0;
+                total_passenger++;
+            }
+        }
+    }
+
+    int row_times = 4, col_times = 10, bus_seats = 0;
+    printf("  _________________________________________\n");
+    printf(" ///___||___||-=Intercity Bus=-||___||___\\\\\\\n");
+    printf("                                         \n");
+    printf("  Door                           Driver  \n");
+    printf("                                         \n");
+    for (int i = 0; i < col_times; i++)
+    {
+        for (int k = 0; k < row_times; k++)
+        {
+            if (passenger_seat_positions[bus_seats] == 0)
+            {
+                printf("  [B] ");
+            }
+            else
+            {
+                printf("  [A] ");
+            }
+            printf("%2d", all_seat_positions[bus_seats]);
+
+            if (all_seat_positions[bus_seats] % 2 == 0 && all_seat_positions[bus_seats] % 4 != 0)
+            {
+                printf("     ");
+            }
+            else
+            {
+                printf("   ");
+            }
+
+            bus_seats++;
+        }
+        printf("\n");
+    }
+    printf("_____________________________________________\n");
+    printf("\n[A] = Seat Available \n[B] = Seat Booked\n");
+    printf("Total Passenger: %d/40\n", total_passenger);
+    fclose(fp);
+}
+
+// check if new passenger's seat conflict with previous passenger's seat
+int check_seats(struct Passenger commuter[MAX_SEAT], int new_seat)
+{
+    FILE *fp;
+    fp = fopen("details.txt", "r");
+    passenger_number();
+    int taken_seat[MAX_SEAT];
+    for (int i = 0; i < P_MAX; i++)
+    {
+        fscanf(fp, "%d", &commuter[i].passenger_id);
+        fscanf(fp, "%s", &commuter[i].passenger_name);
+        fscanf(fp, "%s", &commuter[i].passenger_contact);
+        fscanf(fp, "%d", &commuter[i].passenger_seat_position);
+        fscanf(fp, "%f", &commuter[i].given_money);
+        fscanf(fp, "%f", &commuter[i].ticket_price);
+        fscanf(fp, "%f", &commuter[i].return_money);
+
+        for (int j = 0; j < P_MAX; j++)
+        {
+            taken_seat[i] = commuter[i].passenger_seat_position;
+        }
+    }
+    for (int i = 0; i < MAX_SEAT; i++)
+    {
+        if (taken_seat[i] == new_seat)
+        {
+            return 1;
+        }
+    }
+}
+
 // adding passenger or selling them tickets
 void add_Passenger(struct Passenger commuter[MAX_SEAT])
 {
@@ -115,8 +215,16 @@ void add_Passenger(struct Passenger commuter[MAX_SEAT])
         scanf("\n");
         scanf("%[^\n]%*c", commuter[i].passenger_contact);
 
+    seat_check_done:
         printf("Enter passenger seat number: ");
         scanf("%d", &commuter[i].passenger_seat_position);
+
+        if (check_seats(commuter, commuter[i].passenger_seat_position) == 1)
+        {
+            printf("Invalid! Seat already taken! Below seats are empty!\n");
+            booked_seat(commuter);
+            goto seat_check_done;
+        }
 
         printf("Enter passenger given money: ");
         scanf("%f", &commuter[i].given_money);
@@ -141,6 +249,7 @@ void add_Passenger(struct Passenger commuter[MAX_SEAT])
         }
         else if (choice == 0)
         {
+            clr_scrn();
             break;
         }
 
@@ -469,75 +578,6 @@ void replace_Passenger(struct Passenger commuter[MAX_SEAT])
     }
     fclose(fp);
     fclose(temp);
-}
-
-// visualizing bus seats
-void booked_seat(struct Passenger commuter[MAX_SEAT])
-{
-    FILE *fp;
-    fp = fopen("details.txt", "r");
-    passenger_number();
-    int total_passenger = 0;
-    int passenger_seat_positions[MAX_SEAT] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40};
-    int all_seat_positions[MAX_SEAT] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40};
-
-    for (int i = 0; i < P_MAX; i++)
-    {
-        fscanf(fp, "%d", &commuter[i].passenger_id);
-        fscanf(fp, "%s", &commuter[i].passenger_name);
-        fscanf(fp, "%s", &commuter[i].passenger_contact);
-        fscanf(fp, "%d", &commuter[i].passenger_seat_position);
-        fscanf(fp, "%f", &commuter[i].given_money);
-        fscanf(fp, "%f", &commuter[i].ticket_price);
-        fscanf(fp, "%f", &commuter[i].return_money);
-
-        for (int j = 0; j < MAX_SEAT; j++)
-        {
-            if (passenger_seat_positions[j] == commuter[i].passenger_seat_position)
-            {
-                passenger_seat_positions[j] = 0;
-                total_passenger++;
-            }
-        }
-    }
-
-    int row_times = 4, col_times = 10, bus_seats = 0;
-    printf("  _________________________________________\n");
-    printf(" ///___||___||-=Intercity Bus=-||___||___\\\\\\\n");
-    printf("                                         \n");
-    printf("  Door                           Driver  \n");
-    printf("                                         \n");
-    for (int i = 0; i < col_times; i++)
-    {
-        for (int k = 0; k < row_times; k++)
-        {
-            if (passenger_seat_positions[bus_seats] == 0)
-            {
-                printf("  [B] ");
-            }
-            else
-            {
-                printf("  [A] ");
-            }
-            printf("%2d", all_seat_positions[bus_seats]);
-
-            if (all_seat_positions[bus_seats] % 2 == 0 && all_seat_positions[bus_seats] % 4 != 0)
-            {
-                printf("     ");
-            }
-            else
-            {
-                printf("   ");
-            }
-
-            bus_seats++;
-        }
-        printf("\n");
-    }
-    printf("_____________________________________________\n");
-    printf("\n[A] = Seat Available \n[B] = Seat Booked\n");
-    printf("Total Passenger: %d/40\n", total_passenger);
-    fclose(fp);
 }
 
 // viewing bus earning
