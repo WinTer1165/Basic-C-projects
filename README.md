@@ -15,7 +15,6 @@ New to the repo? Start with [LEARN.md](LEARN.md).
 | [Weather Station](Weather%20Station) | Reads a week of temperatures and reports the average, the hottest day, and the coldest day. |
 | [Robot Game V1](Robot%20Game%20V1) | Drive a little robot around a grid using w/a/s/d commands. |
 | [Hotel Management System](Hotel%20Management%20System) | Add, edit, delete, search, and sort hotel rooms. Saves everything to a text file. |
-| [Bus Reservation System](Bus%20Reservation%20System%20V3) | Book and manage bus seats. Comes in three versions (V1, V2, V3) that grow more capable as you go. |
 | [My_String_Dot_H](My_String_Dot_H) | A from-scratch take on `string.h`, reimplementing functions like string length and compare so you can see how they work under the hood. |
 | [Graph Plotter](Graph%20Plotter) | Plots a quadratic equation `y = ax^2 + bx + c` as ASCII art in the terminal. Contributed by [PPraneesh](https://github.com/PPraneesh). |
 | [Calculator](Calculator) | A menu-driven calculator that adds, subtracts, multiplies, and divides, looping until you choose to exit. |
@@ -36,6 +35,8 @@ These ones lean on structs, menus, and saving data to a file, so they're a good 
 | [Library Management System](Library%20Management%20System) | Add books, issue and return them, search the shelf, and delete old titles. Saves the whole library to a file. |
 | [Student Result Management System](Student%20Result%20Management%20System) | Record marks across five subjects, then get totals, averages, letter grades, and the class topper. Results are saved to a file. |
 | [Inventory Management System](Inventory%20Management%20System) | Track stock for a small shop: sell, restock, see low-stock warnings, and check the total value on hand. Saved to a file. |
+| [Bus Reservation System](Bus%20Reservation%20System%20V3) | Book and manage bus seats. Comes in three versions (V1, V2, V3) that grow more capable as you go. |
+
 
 The Bus Reservation System has three folders. V1 and V2 are earlier takes, and V3 is the most complete one, with a splash screen and the choice of saving data to either `.txt` or `.dat` files.
 
